@@ -23,8 +23,9 @@ public class GPetyasExams {
         }
 
         // For solutionMem, -1 means solutions is not out yet
-        // 0 means solution is out, but person has not studied for it yet
-        // some positive integer > 0 means the day the solution was studied for.
+        // 0 means solution is out and the person has completed all the studied
+        // for this exam. If > 0 then the person requires that many days left
+        // to study for the exam. If pos infinity, then
         int[] solutionMem = new int[m];
         for(int i=0; i<solutionMem.length; i++){
             solutionMem[i]  = -1;
@@ -34,7 +35,7 @@ public class GPetyasExams {
             // Find the solutions that came out today
             for(int i=0; i<m; i++){
                 if(s[i] == j){
-                    solutionMem[i] = 0;
+                    solutionMem[i] = c[i];
                 }
             }
 
@@ -42,10 +43,9 @@ public class GPetyasExams {
             boolean tookExamToday = false;
             for(int e=0; e<m; e++){
                 if(d[e] ==j){
-                    if(solutionMem[e] == 0){
-                        // There is an exam today but the person has not studied for the exam.
-                        System.out.println("Exam " + e + " is due today, but have not studied for it on day " + j);
-                        System.out.println("Ans so far looks like: " + ans.toString().trim());
+                    if(solutionMem[e] > 0){
+                        // There is an exam today but the person has not studied suffuciently
+                        // for the exam
                         out.println("-1");
                         return;
                     }else{
@@ -65,7 +65,7 @@ public class GPetyasExams {
             // that he has not studied for yet.
             ArrayList<Integer> examsToStudyFor = new ArrayList<>();
             for(int i=0; i<m; i++){
-                if(solutionMem[i] == 0)
+                if(solutionMem[i] > 0 && solutionMem[i] != Integer.MAX_VALUE)
                     examsToStudyFor.add(i);
             }
 
@@ -73,37 +73,18 @@ public class GPetyasExams {
             if(examsToStudyFor.size() != 0){
                 int examToStudyForNext = examsToStudyFor.get(0);
 
-                for(int examToStudyFor: examsToStudyFor)
-                    if(d[examToStudyFor] < d[examToStudyForNext]) {
+                for(int examToStudyFor: examsToStudyFor) {
+                    if (d[examToStudyFor] < d[examToStudyForNext])
                         examToStudyForNext = examToStudyFor;
-                    }
+                }
 
-                solutionMem[examToStudyForNext] = j;
-
+                solutionMem[examToStudyForNext]--;
 
                 ans.append((examToStudyForNext+1)+" ");
                 continue;
             }else{
-                // No exams which the user has not studied for.
-                // Determine which exam the user should continue to study for
-                // If none, append 0 to ans
-
-                boolean revisitingMaterial = false;
-                for(int i=0; i<m; i++){
-                    if(solutionMem[i] > 0 && solutionMem[i] != Integer.MAX_VALUE) {
-                        ans.append((i + 1) + " ");
-                        revisitingMaterial = true;
-                        break;
-                    }
-                }
-
-                if(revisitingMaterial)
-                    continue;
-                else {
-                    ans.append("0 ");
-                    continue;
-                }
-
+                ans.append("0 ");
+                continue;
             }
 
         }
