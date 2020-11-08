@@ -1,0 +1,49 @@
+{
+  "name" : "B. Substrings Sort",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "5\na\naba\nabacaba\nba\naba\n",
+    "output" : "YES\na\nba\naba\naba\nabacaba",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "5\na\nabacaba\nba\naba\nabab\n",
+    "output" : "NO\n",
+    "index" : 1,
+    "active" : true
+  }, {
+    "input" : "3\nqwerty\nqwerty\nqwerty\n",
+    "output" : "YES\nqwerty\nqwerty\nqwerty\n",
+    "index" : 2,
+    "active" : true
+  }, {
+    "input" : "4 \naaaa \naaaa \naaaa \nab",
+    "output" : "NO",
+    "index" : 3,
+    "active" : true
+  } ],
+  "location" : "CodeForces/P988",
+  "vmArgs" : "-Xmx256M",
+  "mainClass" : "Main",
+  "taskClass" : "P988.BSubstringsSort",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.11.08",
+  "contestName" : "Codeforces - Codeforces Round #486 (Div. 3)",
+  "truncate" : true,
+  "inputClass" : "java.util.Scanner",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}
