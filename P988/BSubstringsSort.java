@@ -15,68 +15,32 @@ public class BSubstringsSort {
             strings.add(in.nextLine());
         }
 
-        LinkedList<String> ordered = new LinkedList<>();
+        for(int i=0; i<n; i++){
+            for(int j=i+1;j<n; j++){
+                if(strings.get(i).length() > strings.get(j).length()){
+                    String temp = strings.get(i);
+                    strings.set(i, strings.get(j));
+                    strings.set(j, temp);
+                }
+            }
+        }
 
-        int[] substrCount = new int[n];
-        for(int i=0; i<substrCount.length; i++)
-            substrCount[i] = 0;
+        StringBuffer ans = new StringBuffer();
 
         for(int i=0; i<n; i++){
-            for(int j=0; j<n; j++){
-                if(i==j)
-                    continue;
-                if(strings.get(j).contains(strings.get(i))){
-                    substrCount[i]++;
+            String str = strings.get(i);
+
+            for(int j=i+1; j<n; j++){
+                if(strings.get(j).contains(str) == false){
+                    out.println("NO");
+                    return;
                 }
             }
+
+            ans.append(str + " ");
         }
-
-        for(int i=0; i<n; i++)
-            System.out.print(substrCount[i] + " ");
-        System.out.println();
-
-        for(int i=100; i>=0; i--){
-            if(i==0){
-                String str = strings.get(i);
-
-                boolean isASubstringOfA
-            }
-
-            ArrayList<String> iSubstrCount = new ArrayList<>();
-            for(int j=0; j<n; j++){
-                if(substrCount[j] == i){
-                    iSubstrCount.add(strings.get(j));
-                }
-            }
-
-            if(iSubstrCount.size()>0){
-                String firstStr = iSubstrCount.get(0);
-                for(int j=1; j<iSubstrCount.size(); j++){
-                    String str = iSubstrCount.get(j);
-                    if(str.equals(firstStr) == false){
-                        out.println("NO");
-                        return;
-                    }
-                }
-            }
-        }
-
-        for(int i=100; i>=0; i--){
-            for(int j=0; j<n; j++){
-                if(substrCount[j] == i){
-                    ordered.add(strings.get(j));
-                }
-            }
-        }
-
-        Stack<String> stack = new Stack<>();
-
-        for(String s: ordered)
-            stack.push(s);
 
         out.println("YES");
-        for(String s: stack) {
-            out.println(s);
-        }
+        out.println(ans.toString().trim());
     }
 }
