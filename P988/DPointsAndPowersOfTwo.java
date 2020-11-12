@@ -1,23 +1,28 @@
 package P988;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 import java.io.PrintWriter;
 
 public class DPointsAndPowersOfTwo {
 
-
-    Long[] findNextOptions(ArrayList<Long> subSet){
-
+    Long[] powOfTwo(int n){
+        Long[] p = new Long[n+1];
+        for(int i=0; i<=n; i++){
+            p[i] = (long)Math.pow(2.0, i);
+        }
+        return p;
     }
 
-    ArrayList<LinkedList<Long>> findPossibleSubsets(Long[] xs, int startIndex){
-
-
-
-        return null;
-    }
+//    private int isPowOfTwo(Long n){
+//        int max = (int)Math.log(n);
+//
+//        for(int i=0; i<=max; i++){
+//            if((long)Math.pow(2, i) == n)
+//                return i;
+//        }
+//
+//        return -1;
+//    }
 
     public void solve(int testNumber, Scanner in, PrintWriter out) {
 
@@ -28,23 +33,50 @@ public class DPointsAndPowersOfTwo {
             x[i] = in.nextLong();
         }
 
+        Arrays.sort(x);
 
-        int maxSubsetCount = 0;
-        LinkedList<Long> maxSubset = null;
-        for(int i=0; i<n; i++){
-            ArrayList<LinkedList<Long>> posSubsets = findPossibleSubsets(x, i);
+        Long[] pTwo = powOfTwo(30); // ~ 1 billion
 
-            for(LinkedList<Long> ll: posSubsets){
-                int counter = ll.size();
-                if(maxSubsetCount < counter){
-                    maxSubsetCount = counter;
-                    maxSubset = ll;
+        ArrayList<Long> ans = new ArrayList<>();
+
+        //check if answer is 3
+        for(int i=1; i<n-1; i++){
+            for(Long p: pTwo){
+                Long a = x[i] - p;
+                Long c = x[i] + p;
+
+                //System.out.println("checking a: " + a + ", b: " + x[i] + ", c: " + c);
+                if(Arrays.binarySearch(x, a) >= 0 && Arrays.binarySearch(x, c) >= 0){
+//                    System.out.println("Is 3");
+                    ans = new ArrayList<>();
+                    ans.add(a);
+                    ans.add(x[i]);
+                    ans.add(c);
                 }
             }
         }
 
-        for(Long l: maxSubset)
-            System.out.print(l + " ");
+        //check if answer is 2
+        for(int i=0; i<x.length && ans.size() <= 2; i++){
+            for(Long p: pTwo){
+                if(Arrays.binarySearch(x,x[i]+p) > 0){
+
+                    ans = new ArrayList<>();
+                    ans.add(x[i]);
+                    ans.add(x[Arrays.binarySearch(x,x[i]+p)]);
+                }
+            }
+        }
+
+        if(ans.size() == 0) {
+            ans = new ArrayList<>();
+            ans.add(x[0]);
+        }
+
+        out.println(ans.size());
+        for(Long a: ans)
+           out.print(a + " ");
+
 
 
     }
