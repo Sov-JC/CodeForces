@@ -1,0 +1,49 @@
+{
+  "name" : "B. Reversing Encryption",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "10\nrocesfedoc\n",
+    "output" : "codeforces\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "16\nplmaetwoxesisiht\n",
+    "output" : "thisisexampletwo\n",
+    "index" : 1,
+    "active" : true
+  }, {
+    "input" : "1\nz\n",
+    "output" : "z\n",
+    "index" : 2,
+    "active" : true
+  }, {
+    "input" : "10\ncodeforces",
+    "output" : "rocesfedoc",
+    "index" : 3,
+    "active" : false
+  } ],
+  "location" : "CodeForces/P999",
+  "vmArgs" : "-Xmx256M",
+  "mainClass" : "Main",
+  "taskClass" : "P999.BReversingEncryption",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.11.13",
+  "contestName" : "Codeforces - Codeforces Round #490 (Div. 3)",
+  "truncate" : true,
+  "inputClass" : "java.util.Scanner",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}
