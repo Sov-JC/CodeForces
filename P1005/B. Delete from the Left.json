@@ -1,0 +1,49 @@
+{
+  "name" : "B. Delete from the Left",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "test\nwest\n",
+    "output" : "2\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "codeforces\nyes\n",
+    "output" : "9\n",
+    "index" : 1,
+    "active" : true
+  }, {
+    "input" : "test\nyes\n",
+    "output" : "7\n",
+    "index" : 2,
+    "active" : true
+  }, {
+    "input" : "b\nab\n",
+    "output" : "1\n",
+    "index" : 3,
+    "active" : true
+  } ],
+  "location" : "CodeForces/P1005",
+  "vmArgs" : "-Xmx256M",
+  "mainClass" : "Main",
+  "taskClass" : "P1005.BDeleteFromTheLeft",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.11.28",
+  "contestName" : "Codeforces - Codeforces Round #496 (Div. 3)",
+  "truncate" : true,
+  "inputClass" : "java.util.Scanner",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}
